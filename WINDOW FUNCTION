@@ -1,0 +1,160 @@
+window function
+
+1.Show the lastName, party and votes for the constituency 'S14000024' in 2017.
+--------------------------------------------->
+
+SELECT lastName, party, votes
+  FROM ge
+ WHERE constituency = 'S14000024' AND yr = 2017
+ORDER BY votes DESC
+-----------------------------query:
+lastName	party			votes
+MURRAY		Labour			26269
+EADIE		SNP			10755
+SMITH		Conservative		9428
+BEAL		Liberal Democrats	1388
+
+
+
+
+
+2.You can use the RANK function to see the order of the candidates. If you RANK using (ORDER BY votes DESC) then the candidate with the most votes has rank 1.
+
+Show the party and RANK for constituency S14000024 in 2017. List the output by party
+---------------------------------------------->
+SELECT party, votes,
+       RANK() OVER (ORDER BY votes DESC)
+  FROM ge
+ WHERE constituency = 'S14000024' AND yr = 2017
+ORDER BY PARTY 
+-----------------------------query:
+party	votes	
+Conservative	        9428	3
+Labour	                26269	1
+Liberal Democrats	1388	4
+SNP			10755	2
+
+
+
+
+
+3.The 2015 election is a different PARTITION to the 2017 election. We only care abou
+t the order of votes for each year.
+
+Use PARTITION to show the ranking of each party in S14000021 in each year. Include yr, party, votes and ranking (the party with the most votes is 1).
+--------------------------------------------------->
+SELECT yr,party, SUM(votes),
+      RANK() OVER (PARTITION BY yr ORDER BY SUM(votes) DESC) as posn
+  FROM ge
+ WHERE constituency = 'S14000021'
+GROUP BY yr, party
+-----------------------------query:
+yr	party		posn
+2015	SNP	23013	1
+2015	Labour	19295	2
+2015	Conservative	12465	3
+2015	Liberal Democrats	1069	4
+2015	UKIP	888	5
+2017	Conservative	21496	1
+2017	SNP	16784	2
+2017	Labour	14346	3
+2017	Liberal Democrats	1112	4
+2019	SNP	24877	1
+2019	Conservative	19451	2
+2019	Labour	6855	3
+2019	Liberal Democrats	4174	4
+
+
+
+
+
+
+4.Edinburgh constituencies are numbered S14000021 to S14000026.
+
+Use PARTITION BY constituency to show the ranking of each party in Edinburgh in 2017. Order your results so the winners are shown first, then ordered by constituency.
+-------------------------------------------------->
+SELECT constituency,party, SUM(votes), 
+       RANK() OVER (PARTITION BY constituency ORDER BY SUM(votes) DESC) AS winner
+  FROM ge
+ WHERE constituency BETWEEN 'S14000021' AND 'S14000026'
+   AND yr  = 2017
+GROUP BY party, constituency
+ORDER BY winner, constituency
+-----------------------------query:
+constituency	party		winner
+S14000021	Conservative	21496	1
+S14000022	SNP	18509	1
+S14000023	SNP	19243	1
+S14000024	Labour	26269	1
+S14000025	SNP	17575	1
+S14000026	Liberal Democrats	18108	1
+S14000021	SNP	16784	2
+S14000022	Labour	15084	2
+S14000023	Labour	17618	2
+S14000024	SNP	10755	2
+S14000025	Conservative	16478	2
+S14000026	SNP	15120	2
+S14000021	Labour	14346	3
+S14000022	Conservative	8081	3
+S14000023	Conservative	15385	3
+S14000024	Conservative	9428	3
+S14000025	Labour	13213	3
+S14000026	Conservative	11559	3
+S14000021	Liberal Democrats	1112	4
+S14000022	Liberal Democrats	1849	4
+S14000023	Liberal Democrats	2579	4
+S14000024	Liberal Democrats	1388	4
+S14000025	Liberal Democrats	2124	4
+S14000026	Labour	7876	4
+S14000023	Green	1727	5
+S14000026	SIR	132	5
+
+
+
+
+5.You can use SELECT within SELECT to pick out only the winners in Edinburgh.
+
+Show the parties that won for each Edinburgh constituency in 2017.
+---------------------------------------------------->
+SELECT constituency,party
+FROM ge x
+WHERE votes >=(
+       SELECT MAX(votes)
+       FROM ge y
+       WHERE x.constituency = y.constituency
+       AND yr = 2017
+       )
+AND yr = 2017
+AND constituency BETWEEN 'S14000021' AND 'S14000026'
+-----------------------------query:
+constituency	party
+S14000021	Conservative
+S14000022	SNP
+S14000023	SNP
+S14000024	Labour
+S14000025	SNP
+S14000026	Liberal Democrats
+
+
+
+6.You can use COUNT and GROUP BY to see how each party did in Scotland. Scottish constituencies start with 'S'
+
+Show how many seats for each party in Scotland in 2017.
+----------------------------------->
+SELECT party, count(*)
+FROM ge x
+WHERE constituency LIKE 'S%'
+AND yr = 2017
+AND votes >=(
+   SELECT MAX(votes)
+   FROM ge y
+   WHERE y.constituency = x.constituency
+   AND yr=2017 
+    )
+GROUP BY party
+-----------------------------query:
+party	
+Conservative	13
+Liberal Democrats	4
+SNP	35
+Labour	7
