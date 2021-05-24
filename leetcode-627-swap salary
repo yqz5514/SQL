@@ -1,0 +1,10 @@
+1.
+update salary set sex = if(sex = "m", "f", "m")
+
+2. offical solution
+update salary
+set
+  sex = case sex
+  when 'm' then 'f'
+  else 'm'
+end
