@@ -1,0 +1,18 @@
+self join
+
+SELECT w2.Id  FROM Weather w1,Weather w2 
+WHERE w2.Date = DATE_ADD(w1.Date, INTERVAL 1 DAY) 
+AND w2.Temperature > w1.Temperature;
+
+EXPLANATION:
+
+TO_DAYS(wt1.DATE) return the number of days between from year 0 to date DATE
+TO_DAYS(wt1.DATE)-TO_DAYS(wt2.DATE)=1 check if wt2.DATE is yesterday respect to wt1.DATE
+
+We select from the joined tables the rows that have
+
+wt1.Temperature > wt2.Temperature
+
+and difference between dates in days of 1 (yesterday):
+
+TO_DAYS(wt1.DATE)-TO_DAYS(wt2.DATE)=1;
