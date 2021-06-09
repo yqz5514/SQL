@@ -20,4 +20,14 @@
   3). right join( B\A and A intersetion B)
   4). full (outer) join( A Union B)
   5). self join: when you join a table to it self(usually happen in employee.id = manager.id)
+  
+  
+  
+3. left()
+The LEFT() function extracts a number of characters from a string (starting from left).
+Parameter	           Description
+string	Required.          The string to extract from
+number_of_chars	Required.  The number of characters to extract. If the number exceeds the number of characters in string, it returns string
      
+4.ifnull(function,value): if output of function is null, we can replace the output with values
+5. TOP, LIMIT and FETCH FIRST: slect first # of data from the chart.
