@@ -1,0 +1,19 @@
+-- Solution 1
+SELECT name warehouse_name,
+       SUM(units * Width * Length * Height) volume
+FROM Warehouse W
+LEFT JOIN Products P 
+ON W.product_id = P.product_id
+GROUP BY name
+
+
+-- Solution 2
+SELECT name warehouse_name, SUM(units * size) volume
+FROM Warehouse W
+LEFT JOIN
+(
+    SELECT product_id, Width * Length * Height size
+    FROM Products
+) ps
+ON W.product_id = ps.product_id
+GROUP BY name
