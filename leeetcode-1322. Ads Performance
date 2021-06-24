@@ -1,0 +1,15 @@
+SELECT ad_id, IFNULL(ROUND(AVG(CASE WHEN action = 'Clicked' THEN 1
+                         WHEN action = 'Viewed' THEN 0
+                         ELSE NULL END)*100,2),0) AS ctr
+FROM Ads
+GROUP BY ad_id
+ORDER BY ctr DESC, ad_id
+---------------
+ctr = clicked/(clicked+viewed)
+
+here we assigned action as 1 when clicked, 0 when viewed, NULL when neither. You need to notice that NULL doesn't count when calculate avg.
+
+So:
+AVG(******) = (clicked_count *1 + viewed_count *0) / (clicked_count + viewed_count)
+= clicked_count / (clicked_count + viewed_count)
+= ctr
