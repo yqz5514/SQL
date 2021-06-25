@@ -1,0 +1,8 @@
+SELECT MIN(a.x - b.x) AS shortest
+FROM point a, point b
+WHERE a.x > b.x
+-------------------------------------------
+
+select min(p1.x - p2.x) shortest
+from point p1
+inner join point p2 on p1.x > p2.x
