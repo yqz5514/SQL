@@ -15,10 +15,10 @@
 
 
 2.JOIN 
-  1). inner join(A intersection B)
-  2). left join(A\B and A intersection B)
-  3). right join( B\A and A intersetion B)
-  4). full (outer) join( A Union B)
+  1). inner join:The INNER JOIN keyword selects records that have matching values in both tables.
+  2). left join:The LEFT JOIN keyword returns all records from the left table (table1), and the matching records from the right table (table2). The result is 0 records from the right side, if there is no match.
+  3). right join: The RIGHT JOIN keyword returns all records from the right table (table2), and the matching records from the left table (table1). The result is 0 records from the left side, if there is no match.
+  4). full : The FULL OUTER JOIN keyword returns all records when there is a match in left (table1) or right (table2) table records.
   5). self join: when you join a table to it self(usually happen in employee.id = manager.id)
   
   
@@ -33,3 +33,12 @@ number_of_chars	Required.  The number of characters to extract. If the number ex
 5. TOP, LIMIT and FETCH FIRST: slect first # of data from the chart.
 6. group by: aggregate function. when the problem involved in min max order 
 7. concat(): The CONCAT() function adds two or more strings together.
+8. WHERE: The WHERE clause is used to filter records. It is used to extract only those records that fulfill a specified condition. 
+		and The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!
+9. having: The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+10. union(): The UNION operator is used to combine the result-set of two or more SELECT statements.
+Every SELECT statement within UNION must have the same number of columns
+The columns must also have similar data types
+The columns in every SELECT statement must also be in the same order
+
+
