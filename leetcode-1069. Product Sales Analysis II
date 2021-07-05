@@ -1,0 +1,14 @@
+the product table is actually required if the tests were to be implemented correctly , the question is worded in such a way that we should be displaying products with no sales in which case something like this would be the real solution
+
+select
+    product_id,
+    IFNULL(sum(quantity), 0) total_quantity
+from product left join sales
+using(product_id)
+group by product_id
+
+-----------------------------------------------------
+my soution: 
+select product_id, sum(quantity) as total_quantity
+from sales
+group by product_id
