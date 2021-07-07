@@ -1,0 +1,25 @@
+select name, sum(rest) as rest, sum(paid) as paid, sum(canceled) as canceled, sum(refunded) as refunded
+from product join invoice on product.product_id = invoice.product_id
+group by product.product_id
+order by product.name
+
+--------------------------------------------
+other solution:
+select
+p.name name,
+sum(coalesce(i.rest,0)) rest,
+sum(coalesce(i.paid,0)) paid,
+sum(coalesce(i.canceled,0)) canceled,
+sum(coalesce(i.refunded,0)) refunded
+from product p
+left join invoice i
+on p.product_id = i.product_id
+group by p.name
+order by p.name
+**Should we not be including all the products, irrespective of it having an invoice or not?
+There can be products with zero transactions. Since the question said 'ALL products' 
+I thought we'll have to do a LEFT join but looks like it only accept the answers for 
+products that have an invoice number.**
+
+这个更严谨，考虑得更多。逻辑
+包含了查null， 确保只处理invoice里只match product table里的数据。
