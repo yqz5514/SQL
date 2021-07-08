@@ -1,0 +1,18 @@
+1. window function
+select distinct player_id
+, first_value(device_id) over (partition by player_id order by event_date) device_id
+from activity
+
+2. 
+select player_id, device_id 
+from activity 
+where (player_id, event_date) in (
+                                select player_id, min(event_date)
+                                from activity 
+                                group by player_id
+                                 ) 
+
+--------------------------------------------------
+Write a SQL query that reports the device that is first logged in for each player.
+
+** understand the question and query is very important.**
