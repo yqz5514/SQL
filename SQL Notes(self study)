@@ -33,12 +33,29 @@ number_of_chars	Required.  The number of characters to extract. If the number ex
 5. TOP, LIMIT and FETCH FIRST: slect first # of data from the chart.
 6. group by: aggregate function. when the problem involved in min max order 
 7. concat(): The CONCAT() function adds two or more strings together.
-8. WHERE: The WHERE clause is used to filter records. It is used to extract only those records that fulfill a specified condition. 
-		and The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!
-9. having: The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+8. Aggregate functions are used to perform operations across entire columns (which could include millions of rows of data or more)
+Aggregate functions: count(), max&min, sum(), avg()
+
+9. difference between where and having
+1.	WHERE Clause is used to filter the records from the table based on the specified condition.	
+	HAVING Clause is used to filter record from the groups based on the specified condition.
+2.	WHERE Clause can be used without GROUP BY Clause	
+	HAVING Clause cannot be used without GROUP BY Clause
+3.	WHERE Clause implements in row operations	
+	HAVING Clause implements in column operation
+4.	WHERE Clause cannot contain aggregate function	
+	HAVING Clause can contain aggregate function
+5.	WHERE Clause can be used with SELECT, UPDATE, DELETE statement.	
+	HAVING Clause can only be used with SELECT statement.
+6.	WHERE Clause is used before GROUP BY Clause	
+	HAVING Clause is used after GROUP BY Clause
+7.	WHERE Clause is used with single row function like UPPER, LOWER etc.	
+	HAVING Clause is used with multiple row function like SUM, COUNT etc.
+
 10. union(): The UNION operator is used to combine the result-set of two or more SELECT statements.
 Every SELECT statement within UNION must have the same number of columns
 The columns must also have similar data types
 The columns in every SELECT statement must also be in the same order
 
-
+11. datediff(): The DATEDIFF() function returns the difference between two dates.
+   example: SELECT DATEDIFF(year, '2017/08/25', '2011/08/25') AS DateDiff;
