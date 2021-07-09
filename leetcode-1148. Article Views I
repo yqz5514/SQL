@@ -1,0 +1,6 @@
+SELECT author_id AS id FROM Views 
+where author_id = viewer_id 
+GROUP BY id
+order by id
+------------------------
+
