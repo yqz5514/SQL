@@ -1,0 +1,10 @@
+select product_name, sum(unit) as unit
+from orders left join products using(product_id)
+where left(orders.order_date,7) = '2020-02'
+group by product_name
+having unit >= 100
+
+---------------------------------------
+问题是：Write an SQL query to get the names of products with greater than or equal to 100 units ordered in February 2020 and their amount.
+是要列出 在二月的订货单中，哪些产品二月份的数量大于等于100。
+所以会有计算总和，还要有groupBY， 做到最后 没有意识到要在最后加上 having， 才能筛选出最后结果。
