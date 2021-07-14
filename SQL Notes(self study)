@@ -59,3 +59,8 @@ The columns in every SELECT statement must also be in the same order
 
 11. datediff(): The DATEDIFF() function returns the difference between two dates.
    example: SELECT DATEDIFF(year, '2017/08/25', '2011/08/25') AS DateDiff;
+   
+   
+12. using()
+
+13. case when....else......end
