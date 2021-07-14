@@ -1,0 +1,14 @@
+SELECT student.student_id,student.student_name,subject.subject_name,COUNT(exam.subject_name) as attended_exams
+FROM Students as student
+JOIN Subjects as subject
+LEFT JOIN Examinations as exam
+ON student.student_id=exam.student_id AND subject.subject_name=exam.subject_name
+GROUP BY student.student_id,subject.subject_name
+ORDER BY student_id,subject_name;
+
+--------------------------------------
+错在没有仔细看表，一共三个表， 考试表里没有学生ID6，但是学生表里有所有学生ID包括6，然后题目要求是Write an SQL query to find the number of times each student attended each exam.
+所以是包括所有学生的，就算有的学生没有考试，也要把它算进去，因为是包括所有学生。
+
+当有多个表里都有同一个Key的时候，应该怎么标注？ 
+就像这道题里，因为学生表里的学生ID和姓名包括了所有学生，所以用学生表里的这两个KEY。 用科目表里的科目名称可以确保包含了所有科目。 因为是要数分别参加了这些科目的几次考试所以使用考试表里的科目名称来计数。
