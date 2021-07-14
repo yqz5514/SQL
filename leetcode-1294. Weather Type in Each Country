@@ -1,0 +1,16 @@
+
+Q: Write an SQL query to find the type of weather in each country for November 2019.
+The type of weather is Cold if the average weather_state is less than or equal 15, Hot if the average weather_state is greater than or equal 25 and Warm otherwise.
+
+SELECT a.country_name,
+CASE WHEN AVG(weather_state)<=15 THEN "Cold"
+WHEN AVG(weather_state)>=25 THEN "Hot"
+ELSE "Warm" END as weather_type FROM Countries as a
+JOIN Weather as b
+ON a.country_id=b.country_id
+WHERE b.day BETWEEN "2019-11-01" AND "2019-11-30"(WHERE LEFT(weather.day,7)='2019-11')
+GROUP BY a.country_id
+
+------------------------------------------------------
+
+不知道什么时候应该去用 case function。
