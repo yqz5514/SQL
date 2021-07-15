@@ -1,0 +1,8 @@
+SELECT * FROM PATIENTS WHERE
+CONDITIONS LIKE '% DIAB1%' OR
+CONDITIONS LIKE 'DIAB1%'
+----------------------------------------------------
+The 2 conditions are both necessary! Imagine they have a code for "Prediabetes" which happens to be 'PREDIAB100'. Then the expression '%DIAB1%' will include.
+
+Leetcode should make a test case for that.
+
