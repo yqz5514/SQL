@@ -1,0 +1,15 @@
+SELECT 
+    sell_date,
+    COUNT(DISTINCT product) AS num_sold,
+    GROUP_CONCAT(DISTINCT product ORDER BY product) AS products
+FROM Activities
+GROUP BY sell_date
+------------------------------------------
+question: Write an SQL query to find for each date, the number of distinct products sold and their names.
+The sold-products names for each date should be sorted lexicographically. 
+Return the result table ordered by sell_date.
+从题干里能看出来: 
+1. 首先要求找出每个物品每个日期的销售量
+2. 其次,每个日期卖出的物品名称要在一起 按照首字母排序
+3. 整个表要按照时间排序
+所以会有select里面第三行的操作,很简洁就把物品都当在一起并且排序了,我一直没用过concat,所以也不会意识到怎么拍每个日期卖出货物的顺序.
