@@ -1,0 +1,5 @@
+select distinct title as title
+from tvprogram left join content on tvprogram.content_id = content.content_id
+where left(program_date,7) = '2020-06' and kids_content = 'y' and content_type = 'movies'
+-----------------------
+string needs '' !!!!!!
