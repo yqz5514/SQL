@@ -1,0 +1,9 @@
+select date_format(order_date, "%Y-%m") as month, count(order_id) as order_count, count(customer_id) as customer_count
+from orders
+where invoice > 20
+group by 1
+
+---------------------------------------
+order_date(),里面的大小写也需要注意， 如果%Y-%M 格式就是：数字年份-英文月份 例子：2020-July
+                                        %y 格式就是数字后两位。例子：2020： 20
+                                        %m 格式就是数字形式
