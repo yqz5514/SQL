@@ -1,0 +1,24 @@
+question: Write an SQL query to report
+
+product_name in lowercase without leading or trailing white spaces.
+sale_date in the format ('YYYY-MM').
+total the number of times the product was sold in this month.
+Return the result table ordered by product_name in ascending order. In case of a tie, order it by sale_date in ascending order.
+
+
+solution: 
+SELECT LOWER(TRIM(product_name)) product_name, DATE_FORMAT(sale_date, "%Y-%m") sale_date, count(sale_id) total
+FROM sales
+GROUP BY 1, 2
+ORDER BY 1, 2
+
+------------------------------------------------
+
+
+in this table, sales_id is ptimary key, so no duplicate.
+
+why use 1,2? : group by product_name, sale_date will refer to "two columns" in sales table.
+But what you want to group is actually
+GROUP BY LOWER(TRIM(product_name)) , DATE_FORMAT(sale_date, "%Y-%m")
+, which is group by 1,2
+
