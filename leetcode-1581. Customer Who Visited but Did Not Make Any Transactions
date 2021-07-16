@@ -1,0 +1,7 @@
+select customer_id, count(visits.visit_id) as count_no_trans
+from visits left join transactions on visits.visit_id = transactions.visit_id
+where transaction_id is null
+group by customer_id
+----------------------------
+
+当合并两个表 并且两个表有相同列的时候，合并成新表需要用这个重合列来做新表的列的时候，需要标注清楚是哪个表里的，（目前自己的理解，待补充）
