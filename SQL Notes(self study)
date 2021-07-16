@@ -33,6 +33,10 @@ number_of_chars	Required.  The number of characters to extract. If the number ex
 5. TOP, LIMIT and FETCH FIRST: slect first # of data from the chart.
 6. group by: aggregate function. when the problem involved in min max order 
 7. concat(): The CONCAT() function adds two or more strings together.
+   GROUP_CONCAT() function returns a string with concatenated non-NULL value from a group.
+   Returns NULL when there are no non-NULL values.
+
+
 8. Aggregate functions are used to perform operations across entire columns (which could include millions of rows of data or more)
 Aggregate functions: count(), max&min, sum(), avg()
 
@@ -64,3 +68,8 @@ The columns in every SELECT statement must also be in the same order
 12. using()
 
 13. case when....else......end
+
+14. %, 代替字符.
+  example: SELECT * FROM PATIENTS WHERE
+CONDITIONS LIKE '% DIAB1%' OR
+CONDITIONS LIKE 'DIAB1%';
