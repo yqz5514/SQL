@@ -1,0 +1,4 @@
+select name, sum(amount) as balance
+from users left join transactions on users.account = transactions.account
+group by users.account (这里要注意clarify ‘account’)
+having balance > 10000
