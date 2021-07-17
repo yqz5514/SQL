@@ -73,3 +73,11 @@ The columns in every SELECT statement must also be in the same order
   example: SELECT * FROM PATIENTS WHERE
 CONDITIONS LIKE '% DIAB1%' OR
 CONDITIONS LIKE 'DIAB1%';
+
+15. trim(): The TRIM() function removes the space character OR other specified characters from the start or end of a string.
+            	By default, the TRIM() function removes leading and trailing spaces from a string
+    rtrim() & ltrim() : The RTRIM() function removes trailing spaces from a string.
+
+
+
+
