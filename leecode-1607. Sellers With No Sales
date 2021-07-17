@@ -1,0 +1,7 @@
+select seller_name
+from orders right join seller on orders.seller_id = seller.seller_id
+where seller.seller_id not in (select distinct orders.seller_id from orders where left(sale_date,4) = '2020')
+order by 1
+
+--------------------------------------------------------------------
+注意表明seller_id的所属表。
