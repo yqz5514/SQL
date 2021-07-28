@@ -31,6 +31,7 @@ number_of_chars	Required.  The number of characters to extract. If the number ex
      
 4.ifnull(function,value): if output of function is null, we can replace the output with values
 5. TOP, LIMIT and FETCH FIRST: slect first # of data from the chart.
+
 6. group by: aggregate function. when the problem involved in min max order 
 7. concat(): The CONCAT() function adds two or more strings together.
    GROUP_CONCAT() function returns a string with concatenated non-NULL value from a group.
