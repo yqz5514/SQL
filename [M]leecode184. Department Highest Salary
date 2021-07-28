@@ -1,0 +1,20 @@
+184. Department Highest Salary
+SELECT Department.Name AS Department, E1.Name AS Employee, E1.Salary AS Salary
+FROM Employee AS E1 JOIN Department
+ON E1.DepartmentId = Department.Id
+WHERE E1.Salary =
+(SELECT MAX(Salary) FROM Employee AS E2
+WHERE E1.DepartmentId = E2.DepartmentId)
+
+solution 2
+
+SELECT D.Name AS Department ,E.Name AS Employee ,E.Salary 
+FROM
+	Employee E,
+	(SELECT DepartmentId,max(Salary) as max FROM Employee GROUP BY DepartmentId) T,#this line return the max value of salaray group by d.id which is 90000 and 80000
+	Department D
+WHERE E.DepartmentId = T.DepartmentId 
+  AND E.Salary = T.max # here all the salary == 90000 or 8000o will be selected whihc means the depulicate value as well
+  AND E.DepartmentId = D.id
+  
+  
