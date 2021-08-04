@@ -122,7 +122,8 @@ Format	Description
 
 
 18. difference between sum() and count()
-
+    Sum: each value of cloum add up together
+    Count : count number of items 
 19 mod(), %2=1 : divided
 
 
