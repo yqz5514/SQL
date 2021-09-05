@@ -1,0 +1,38 @@
+solution1:
+select max(salary) as SecondHighestSalary
+from Employee
+where salary < (select max(salary) from Employee)
+
+
+
+# Using max() will return a NULL if the value doesn't exist. 
+So there is no need to UNION a NULL. 
+Of course, if the second highest value is guaranteed to exist, using LIMIT 1,1 will be the best answer.
+
+
+
+other questions:
+1. what if there are two same value of second highest salary?
+2. or there has two same max(salary) in the table? will that effect this code?
+maybe use distinct function?
+
+
+alternative solutions:
+1. SELECT
+    (SELECT DISTINCT
+            Salary
+        FROM
+            Employee
+        ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1) AS SecondHighestSalary
+# this will help to pick a distinct highest value from table
+
+2. SELECT
+    IFNULL(
+      (SELECT DISTINCT Salary
+       FROM Employee
+       ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1),
+    NULL) AS SecondHighestSalary
+# deal with null without using max() function.
+
