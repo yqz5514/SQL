@@ -1,5 +1,12 @@
-## solution:
+ solution:
 select FirstName, LastName, City, State from person
 left join address on person.PersonId = address.PersonId
 
 the question is ask for sepcific information from table without address information. so left join is more capable. 
+
+
+faster one:
+SELECT tb1.FirstName, tb1.LastName, tb2.City, tb2.State
+FROM Person AS tb1
+LEFT JOIN Address AS tb2 
+ON tb1.PersonId = tb2.PersonId
