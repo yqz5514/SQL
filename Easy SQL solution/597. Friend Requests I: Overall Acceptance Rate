@@ -1,0 +1,16 @@
+solution 1:
+select 
+ifnull((select round(count(distinct requester_id,accepter_id)/count(distinct sender_id, send_to_id),2)
+from request_accepted, friend_request),0)
+as accept_rate
+
+
+solution 2:
+SELECT
+ROUND(
+    IFNULL(
+    (SELECT COUNT(*) FROM (SELECT DISTINCT requester_id, accepter_id FROM RequestAccepted) AS A)
+    /
+    (SELECT COUNT(*) FROM (SELECT DISTINCT sender_id, send_to_id FROM FriendRequest) AS B),
+    0)
+, 2) AS accept_rate;
