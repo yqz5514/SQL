@@ -1,0 +1,14 @@
+SOlution:
+select w1.id 
+from Weather w1, Weather w2
+where w1.Temperature > w2.Temperature and
+subdate(w1.RecordDate, 1)=w2.RecordDate
+# TO_DAYS(wt1.DATE)-TO_DAYS(wt2.DATE)=1
+
+
+Function:
+- subdate()
+- TO_DAYS(wt1.DATE) return the number of days between from year 0 to date DATE
+  TO_DAYS(wt1.DATE)-TO_DAYS(wt2.DATE)=1 check if wt2.DATE is yesterday respect to wt1.DATE
+  
+- 
