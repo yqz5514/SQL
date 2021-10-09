@@ -1,0 +1,15 @@
+solution1:
+select MAX(Salary) as secondhighestsalary 
+from Employee
+where Salary < (select MAX(Salary) from Employee)
+
+
+
+solution2:
+SELECT
+    (SELECT DISTINCT
+            Salary
+        FROM
+            Employee
+        ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1) AS SecondHighestSalary
