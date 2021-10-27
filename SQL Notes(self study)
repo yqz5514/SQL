@@ -62,6 +62,10 @@ Every SELECT statement within UNION must have the same number of columns
 The columns must also have similar data types
 The columns in every SELECT statement must also be in the same order
 
+** - union(): sorting first, then only  take non -duplicate value.**
+***if the dataset has all distinct value then union() is not a best choice because sorting is expensive operation. ****
+
+
 11. datediff(): The DATEDIFF() function returns the difference between two dates.
    example: SELECT DATEDIFF(year, '2017/08/25', '2011/08/25') AS DateDiff;
    
