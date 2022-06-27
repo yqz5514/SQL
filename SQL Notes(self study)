@@ -130,6 +130,7 @@ Format	Description
     Count : count number of items 
 19 mod(), %2=1 : divided
 
-
+20. limit(offset, row_count)
+21. max 
 
 
